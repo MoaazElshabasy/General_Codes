@@ -85,8 +85,9 @@ def player2(l):
             
 def answers(x, l):
     status = True
-    for i in range (0,x):
-        while not redButton.getState() and not greenButton.getState():
+    i = 0
+    while not redButton.getState() and not greenButton.getState():
+        while i < x:
             time.sleep(0.5)
             if redButton.getState():
                 redLED.setState(True)
@@ -96,7 +97,7 @@ def answers(x, l):
                 if c != l[i]:
                     print("You Lost!")
                     status = False
-                break
+                i += 1
             elif greenButton.getState():
                 greenLED.setState(True)
                 time.sleep(0.5)
@@ -105,9 +106,10 @@ def answers(x, l):
                 if c != l[i]:
                     print("You Lost!")
                     status = False
-                break
-    if status == True:
-        print("You Won!")                
+                i += 1
+        if status == True:
+            print("You Won!")
+            break
 print("Choose Red for single player and Green for multiplayer")
 print(" ")
 while True:
